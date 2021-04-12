@@ -273,3 +273,13 @@ In Synapse, there are a number of artifacts that are not ARM resources. This dif
 ### Unexpected token error in release
 
 When your parameter file has parameter values which are not escaped, the release pipeline will fail to parse the file, and will generate the error, "unexpected token". We suggest you to override parameters or use Azure KeyVault to retrieve parameter values. You could also use double escape characters as a workaround.
+
+### Deploy artifact failed:
+
+Error
+Deploy artifact failed:  {"error":{"code":"Unauthorized","message":"The principal 'XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX' does not have the required Synapse RBAC permission to perform this action. Required permission: Action: Microsoft.Synapse/workspaces/linkedServices/write, Scope: workspaces/AzureSynapseWorkspaceName ."}}
+
+If you did not create your Azure Synapse Workspace from a template, but from the Azure Portal the Azure DevOps Managed Identity may not have the proper permissions on the Azure Synapse Workspace. Ensure the Managed Identity for your Azure DevOps Project has Synapse Administrator access to the Azure Synapse Workspace to which you are attempting to deploy. 
+
+![image](https://user-images.githubusercontent.com/5805777/114403866-2937d000-9b73-11eb-8457-73f0bd545abd.png)
+
